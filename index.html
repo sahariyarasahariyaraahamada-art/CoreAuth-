@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d1c">
+<meta name="description" content="CoreAuth is a Minecraft server plugin featuring authentication, anti-cheat checks, teleportation, homes, warps and server management tools.">
+
+<title>CoreAuth 4.0.0 | Minecraft Server Plugin</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #090d1c;
+    --card: #111a30;
+    --blue: #16c9ed;
+    --purple: #6655f5;
+    --text: #f5f7ff;
+    --muted: #aab4cc;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+/* NAVBAR */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,13,28,.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid #26304b;
+}
+
+.nav {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 27px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 590px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 30%, #273e83 0%, transparent 55%),
+      linear-gradient(135deg, #0a1026, #11102e);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: auto;
+    padding: 90px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.version {
+    display: inline-block;
+    padding: 7px 17px;
+    border: 1px solid #237d9b;
+    background: #103044;
+    color: #52ddfa;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 78px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #26d9f5, #8d7aff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 650px;
+    margin: auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.btn {
+    padding: 14px 25px;
+    border-radius: 9px;
+    font-weight: bold;
+    display: inline-block;
+    transition: .25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.primary {
+    color: #07111e;
+    background: linear-gradient(90deg, #21d8f4, #6b9eff);
+}
+
+.secondary {
+    border: 1px solid #65739b;
+    background: #18223b;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 85px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.section-desc {
+    text-align: center;
+    color: var(--muted);
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.feature {
+    background: linear-gradient(145deg, #151f39, #0e162b);
+    border: 1px solid #263553;
+    padding: 27px;
+    border-radius: 15px;
+    transition: .25s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue);
+}
+
+.feature .icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    margin-bottom: 9px;
+    font-size: 19px;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* HIGHLIGHT */
+
+.highlight {
+    background: #10182d;
+}
+
+.highlight-box {
+    border: 1px solid #34466b;
+    border-radius: 20px;
+    padding: 40px;
+    background: linear-gradient(120deg, #172b4a, #171438);
+    text-align: center;
+}
+
+.highlight-box h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.highlight-box p {
+    color: var(--muted);
+    max-width: 700px;
+    margin: auto;
+}
+
+/* INSTALLATION */
+
+.steps {
+    max-width: 750px;
+    margin: auto;
+}
+
+.step {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #26304b;
+}
+
+.number {
+    min-width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #17445d;
+    color: #54dcfa;
+    font-weight: bold;
+}
+
+.step p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* DOWNLOAD */
+
+.download {
+    text-align: center;
+    background:
+      radial-gradient(ellipse at center, #202c61, transparent 70%);
+}
+
+.download-box {
+    max-width: 750px;
+    margin: auto;
+    padding: 45px 25px;
+    border: 1px solid #354775;
+    border-radius: 20px;
+    background: rgba(17,26,48,.85);
+}
+
+.download-box h2 {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.download-box p {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px 0;
+    border-top: 1px solid #26304b;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+footer strong {
+    color: var(--blue);
+}
+
+@media(max-width: 650px) {
+    .nav {
+        height: auto;
+        min-height: 70px;
+        flex-wrap: wrap;
+        padding: 12px 0;
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 14px;
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 520px;
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .section-title {
+        font-size: 29px;
+    }
+
+    .highlight-box {
+        padding: 28px 18px;
+    }
+
+    .step {
+        padding: 16px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+        <a href="#" class="logo">
+            <span class="logo-icon">C</span>
+            CoreAuth
+        </a>
+
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#installation">Installation</a>
+            <a href="#download">Download</a>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="container hero-content">
+
+        <span class="version">COREAUTH VERSION 4.0.0</span>
+
+        <h1>
+            Protect Your Server<br>
+            <span class="gradient">With CoreAuth</span>
+        </h1>
+
+        <p>
+            An all-in-one Minecraft server plugin combining
+            player authentication, anti-cheat checks,
+            teleportation and essential server management tools.
+        </p>
+
+        <div class="buttons">
+            <a class="btn primary"
+               href="https://github.com/sahariyarasahariyaraahamada-art/CoreAuth/releases/download/26.3/CoreAuth-4.0.0.jar">
+                ⬇ Download Plugin
+            </a>
+
+            <a class="btn secondary"
+               href="https://github.com/sahariyarasahariyaraahamada-art/CoreAuth">
+                View on GitHub ↗
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- FEATURES -->
+
+<section id="features">
+    <div class="container">
+
+        <h2 class="section-title">
+            Powerful <span class="gradient">Features</span>
+        </h2>
+
+        <p class="section-desc">
+            Everything you need to manage important server functions
+            from one plugin.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="icon">🔐</div>
+                <h3>Authentication</h3>
+                <p>
+                    Player registration, login and password
+                    management features.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">🛡️</div>
+                <h3>Anti-Cheat Checks</h3>
+                <p>
+                    Configurable checks for suspicious player
+                    movement and combat behavior.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">🏠</div>
+                <h3>Homes System</h3>
+                <p>
+                    Set, manage and teleport to saved player homes.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">🌍</div>
+                <h3>Warps & Spawn</h3>
+                <p>
+                    Create server warps and manage the server spawn.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">⚡</div>
+                <h3>Teleportation</h3>
+                <p>
+                    TPA requests, teleport acceptance,
+                    rejection and random teleportation.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">💬</div>
+                <h3>Private Messaging</h3>
+                <p>
+                    Send private messages, reply to players
+                    and manage ignored players.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">⚙️</div>
+                <h3>Administration</h3>
+                <p>
+                    Admin permissions, command controls
+                    and server management options.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">🔧</div>
+                <h3>Configuration</h3>
+                <p>
+                    Customize supported plugin settings
+                    through configuration files.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- HIGHLIGHT -->
+
+<section class="highlight">
+    <div class="container">
+        <div class="highlight-box">
+            <h2>
+                One Plugin. <span class="gradient">Many Tools.</span>
+            </h2>
+            <p>
+                CoreAuth brings authentication, player utilities
+                and server management features together in one place.
+                Designed for Minecraft server owners who want
+                convenient server management.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- INSTALLATION -->
+
+<section id="installation">
+    <div class="container">
+
+        <h2 class="section-title">
+            Installation <span class="gradient">Guide</span>
+        </h2>
+
+        <p class="section-desc">
+            Follow these basic steps to install CoreAuth.
+        </p>
+
+        <div class="steps">
+
+            <div class="step">
+                <span class="number">1</span>
+                <div>
+                    <h3>Download CoreAuth</h3>
+                    <p>Download the CoreAuth 4.0.0 JAR file.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="number">2</span>
+                <div>
+                    <h3>Open Your Server Folder</h3>
+                    <p>Locate the plugins directory of your server.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="number">3</span>
+                <div>
+                    <h3>Install the Plugin</h3>
+                    <p>Place CoreAuth-4.0.0.jar inside the plugins folder.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="number">4</span>
+                <div>
+                    <h3>Restart Your Server</h3>
+                    <p>Restart the server and check the plugin configuration.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- DOWNLOAD -->
+
+<section class="download" id="download">
+    <div class="container">
+
+        <div class="download-box">
+
+            <span class="version">LATEST PROVIDED RELEASE</span>
+
+            <h2>
+                Get <span class="gradient">CoreAuth 4.0.0</span>
+            </h2>
+
+            <p>
+                Download the plugin from its GitHub release.
+            </p>
+
+            <a class="btn primary"
+               href="https://github.com/sahariyarasahariyaraahamada-art/CoreAuth/releases/download/26.3/CoreAuth-4.0.0.jar">
+                ⬇ Download CoreAuth 4.0.0
+            </a>
+
+            <br><br>
+
+            <a class="secondary btn"
+               href="https://github.com/sahariyarasahariyaraahamada-art/CoreAuth">
+                GitHub Repository ↗
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>
+            © 2026 <strong>CoreAuth</strong> |
+            Developed by Shahariar BD
+        </p>
+        <p>Minecraft is a trademark of Mojang Studios.
+        This project is not affiliated with Mojang or Microsoft.</p>
+    </div>
+</footer>
+
+</body>
+</html>
